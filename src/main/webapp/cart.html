@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        #container { 
+           margin:0 auto;  
+            width: 31%;
+            height: 400px;
+          overflow: scroll;
+            border: 1px springgreen solid; 
+           padding: 10px;
+           background-color: aqua;
+        }
+
+    </style>
+
+
+</head>
+<body>
+
+  
+  <div id="container">
+    </div>
+    
+
+
+</body>
+</html>
+
+<script  src="js/jquery-3.3.1.min.js"></script>
+<script>
+    $(function(){
+        $.ajax({
+            type :'post',
+            url : 'http://localhost:8080/FengSHOP/front/login.do?pageNo=1&pageSize=5',
+            dataType : 'json' ,
+            success : function(data) {
+                $.each(data,function(i,e){
+                 var item=$("<div>"+e.id+":"+e.product.desc+"</div>")
+                 $("#container").append(item);
+                       })
+            }
+
+        })
+    })
+
+</script>
